@@ -1,8 +1,8 @@
 {
-  "name": "week9lab1",
+  "name": "lab2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js"

@@ -5,8 +5,8 @@ const methodOverride = require('method-override')
 const connectDB = require("./config/db");
 const logger = require("./middlewares/logger")
 
-const blogAPI = require("./controllers/goalAPIController");
-const blogSSR = require("./controllers/goalSSRController");
+const locationAPI = require("./controllers/locationAPIController");
+const locationSSR = require("./controllers/locationSSRController");
  
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,35 +26,35 @@ connectDB();
  
 // SSR
 
-// End1: Route to render index.html with goals using EJS
-app.get("/", blogSSR.renderGoals);
-// End2: Define a route to render the addgoal.ejs view
-app.get("/addgoal", blogSSR.renderForm);
-// End3:Route to add  goal using EJ
-app.post("/addgoal", blogSSR.addGoal);
-// Define a route to render the singlegoal.ejs view
-app.get("/single-goal/:id", blogSSR.renderGoal);
-// Define a route to delete singlegoal
-app.delete("/single-goal/:id", blogSSR.deleteGoal);
-// Define a route to update single goal.ejs
-app.put("/single-goal/:id", blogSSR.updateGoal);
-// Define goal to update
-app.get("/single-goal/update/:id", blogSSR.renderUpdateGoal);
+// End1: Route to render index.html with locations using EJS
+app.get("/", locationSSR.renderLocations);
+// End2: Define a route to render the addlocation.ejs view
+app.get("/addlocation", locationSSR.renderForm);
+// End3:Route to add  location using EJ
+app.post("/addlocation", locationSSR.addLocation);
+// Define a route to render the singlelocation.ejs view
+app.get("/single-location/:id", locationSSR.renderLocation);
+// Define a route to delete singlelocation
+app.delete("/single-location/:id", locationSSR.deleteLocation);
+// Define a route to update single location.ejs
+app.put("/single-location/:id", locationSSR.updateLocation);
+// Define location to update
+app.get("/single-location/update/:id", locationSSR.renderUpdateLocation);
 
 // API
-// GET all Goals
-app.get("/api/goals", blogAPI.getGoals);
-// POST a new Goal
-app.post("/api/goals", blogAPI.addGoal);
-// GET a single Goal
-app.get("/api/goals/:id", blogAPI.getGoal);
+// GET all Locations
+app.get("/api/locations", locationAPI.getLocations);
+// POST a new Location
+app.post("/api/locations", locationAPI.addLocation);
+// GET a single Location
+app.get("/api/locations/:id", locationAPI.getLocation);
 
-// Update Goal using PUT
-app.put("/api/goals/:id", blogAPI.updateGoal);
-// DELETE a Goal
-app.delete("/api/goals/:id", blogAPI.deleteGoal);
-// DELETE all Goal
-app.delete("/api/goals", blogAPI.deleteAllGoals);
+// Update Location using PUT
+app.put("/api/locations/:id", locationAPI.updateLocation);
+// DELETE a Location
+app.delete("/api/locations/:id", locationAPI.deleteLocation);
+// DELETE all Location
+app.delete("/api/locations", locationAPI.deleteAllLocations);
 
 const PORT = 4000;
 
